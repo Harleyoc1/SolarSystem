@@ -1,7 +1,7 @@
-com/harleyoconnor/solarsystem/utils/TransitionUtils.java
- com.harleyoconnor.solarsystem.utils.TransitionUtils
 com/harleyoconnor/solarsystem/planets/Earth.java
  com.harleyoconnor.solarsystem.planets.Earth
+com/harleyoconnor/solarsystem/utils/TransitionUtils.java
+ com.harleyoconnor.solarsystem.utils.TransitionUtils
 com/harleyoconnor/solarsystem/planets/Planet.java
  com.harleyoconnor.solarsystem.planets.Planet
 com/harleyoconnor/solarsystem/SolarSystem.java

@@ -23,7 +23,7 @@ public final class Earth extends Planet {
 
     @Override
     public Image getTexture() {
-        return new Image(SolarSystem.FILE_PREFIX + FileUtils.getInternalPath("earth.jpg"));
+        return new Image(SolarSystem.FILE_PREFIX + FileUtils.getInternalPath("textures/planets/earth.jpg"));
     }
 
 }

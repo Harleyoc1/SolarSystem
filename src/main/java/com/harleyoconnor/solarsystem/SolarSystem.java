@@ -44,7 +44,7 @@ public class SolarSystem extends Application {
         final Sphere sun = new Sphere(150);
         sun.setTranslateX(-250);
 
-        final Image sunImage = new Image(FILE_PREFIX + FileUtils.getInternalPath("sun.jpeg"));
+        final Image sunImage = new Image(FILE_PREFIX + FileUtils.getInternalPath("textures/stars/sun.jpg"));
         final PhongMaterial sunPhong = new PhongMaterial();
         sunPhong.setDiffuseMap(sunImage);
         sun.setMaterial(sunPhong);
