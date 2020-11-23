@@ -1,5 +1,6 @@
 package com.harleyoconnor.solarsystem.planets;
 
+import com.harleyoconnor.solarsystem.ISpaceObject;
 import com.harleyoconnor.solarsystem.utils.TransitionUtils;
 import javafx.animation.Animation;
 import javafx.animation.Interpolator;
@@ -14,7 +15,7 @@ import javafx.scene.transform.Rotate;
 /**
  * @author Harley O'Connor
  */
-public abstract class Planet {
+public abstract class Planet implements ISpaceObject {
 
     private final int radius;
 
@@ -63,6 +64,7 @@ public abstract class Planet {
         this.parentPane.getChildren().add(this.planetContainer);
     }
 
+    @Override
     public void onTick (final ActionEvent event) {
         this.rotationAroundStar.setAngle(this.angle);
         this.angle += 0.25;

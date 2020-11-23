@@ -6,3 +6,5 @@ com/harleyoconnor/solarsystem/planets/Planet.java
  com.harleyoconnor.solarsystem.planets.Planet
 com/harleyoconnor/solarsystem/SolarSystem.java
  com.harleyoconnor.solarsystem.SolarSystem
+com/harleyoconnor/solarsystem/ISpaceObject.java
+ com.harleyoconnor.solarsystem.ISpaceObject

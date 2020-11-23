@@ -19,11 +19,16 @@ import javafx.scene.transform.Rotate;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class SolarSystem extends Application {
 
     final String[] colours = {"a37374", "7a8dab", "ffffff", "a45c3e"};
 
     public static final String FILE_PREFIX = "file:";
+
+    private static final List<ISpaceObject> SPACE_OBJECTS = new ArrayList<>();
 
     @Override
     public void start (Stage primaryStage) {
@@ -64,11 +69,17 @@ public class SolarSystem extends Application {
         primaryStage.setScene(scene);
         primaryStage.show();
 
-        final Timeline tick = new Timeline(60, new KeyFrame(new Duration(10), earth::onTick));
+        SPACE_OBJECTS.add(earth);
+
+        final Timeline tick = new Timeline(60, new KeyFrame(new Duration(10), this::callTickMethods));
 
         tick.setCycleCount(-1);
         tick.play();
 
+    }
+
+    private void callTickMethods (final ActionEvent event) {
+        SPACE_OBJECTS.forEach(spaceObject -> spaceObject.onTick(event));
     }
 
     private void createStars(final StackPane root) {
