@@ -26,6 +26,7 @@ public class SolarSystem extends Application {
     public static final String FILE_PREFIX = "file:";
 
     private static final List<ISpaceObject> SPACE_OBJECTS = new ArrayList<>();
+    private static final List<IRotatingModel> ROTATING_MODELS = new ArrayList<>();
 
     @Override
     public void start (Stage primaryStage) {
@@ -39,14 +40,15 @@ public class SolarSystem extends Application {
         final double initialCentreY = primaryStage.getHeight() / 2;
 
         final Star sun = new Sun(root, initialCentreX - 250);
-
-        sun.initModel();
-        sun.setupRotations(0, 0);
+        ROTATING_MODELS.add(sun); SPACE_OBJECTS.add(sun);
 
         final Planet earth = new Earth(root, sun);
+        ROTATING_MODELS.add(earth); SPACE_OBJECTS.add(earth);
 
-        earth.initModel();
-        earth.setupRotations(initialCentreX - 250, initialCentreY);
+        ROTATING_MODELS.forEach(rotatingModel -> {
+            rotatingModel.initModel();
+            rotatingModel.setupRotations(initialCentreX, initialCentreY);
+        });
 
         this.createBackgroundStars(root);
 
@@ -58,13 +60,10 @@ public class SolarSystem extends Application {
         primaryStage.setScene(scene);
         primaryStage.show();
 
-        SPACE_OBJECTS.add(earth);
-
         final Timeline tick = new Timeline(60, new KeyFrame(new Duration(10), this::callTickMethods));
 
         tick.setCycleCount(-1);
         tick.play();
-
     }
 
     private void callTickMethods (final ActionEvent event) {

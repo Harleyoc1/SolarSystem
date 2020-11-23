@@ -23,6 +23,11 @@ public final class Earth extends Planet {
     }
 
     @Override
+    public void setupRotations(double centreX, double centreY) {
+        super.setupRotations(centreX - 250, centreY);
+    }
+
+    @Override
     public Image getTexture() {
         return new Image(SolarSystem.FILE_PREFIX + FileUtils.getInternalPath("textures/planets/earth.jpg"));
     }
