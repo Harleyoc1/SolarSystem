@@ -2,6 +2,7 @@ package com.harleyoconnor.solarsystem.planets;
 
 import com.harleyoconnor.javautilities.FileUtils;
 import com.harleyoconnor.solarsystem.SolarSystem;
+import com.harleyoconnor.solarsystem.stars.Star;
 import javafx.scene.image.Image;
 import javafx.scene.layout.StackPane;
 
@@ -10,8 +11,8 @@ import javafx.scene.layout.StackPane;
  */
 public final class Earth extends Planet {
 
-    public Earth (final StackPane parentPane) {
-        super (25, parentPane);
+    public Earth (final StackPane parentPane, final Star parentStar) {
+        super (25, parentPane, parentStar);
     }
 
     @Override

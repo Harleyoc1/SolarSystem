@@ -1,10 +1,16 @@
-com/harleyoconnor/solarsystem/planets/Earth.java
- com.harleyoconnor.solarsystem.planets.Earth
+com/harleyoconnor/solarsystem/ISpaceObject.java
+ com.harleyoconnor.solarsystem.ISpaceObject
 com/harleyoconnor/solarsystem/utils/TransitionUtils.java
  com.harleyoconnor.solarsystem.utils.TransitionUtils
+com/harleyoconnor/solarsystem/IRotatingModel.java
+ com.harleyoconnor.solarsystem.IRotatingModel
+com/harleyoconnor/solarsystem/planets/Earth.java
+ com.harleyoconnor.solarsystem.planets.Earth
+com/harleyoconnor/solarsystem/stars/Sun.java
+ com.harleyoconnor.solarsystem.stars.Sun
+com/harleyoconnor/solarsystem/stars/Star.java
+ com.harleyoconnor.solarsystem.stars.Star
 com/harleyoconnor/solarsystem/planets/Planet.java
  com.harleyoconnor.solarsystem.planets.Planet
 com/harleyoconnor/solarsystem/SolarSystem.java
  com.harleyoconnor.solarsystem.SolarSystem
-com/harleyoconnor/solarsystem/ISpaceObject.java
- com.harleyoconnor.solarsystem.ISpaceObject
