@@ -2,6 +2,8 @@ package com.harleyoconnor.solarsystem;
 
 import com.harleyoconnor.javautilities.FileUtils;
 import com.harleyoconnor.javautilities.IntegerUtils;
+import com.harleyoconnor.solarsystem.moons.Luna;
+import com.harleyoconnor.solarsystem.moons.Moon;
 import com.harleyoconnor.solarsystem.planets.Earth;
 import com.harleyoconnor.solarsystem.planets.Planet;
 import com.harleyoconnor.solarsystem.stars.Star;
@@ -21,7 +23,7 @@ import java.util.List;
 
 public class SolarSystem extends Application {
 
-    final String[] colours = {"a37374", "7a8dab", "ffffff", "a45c3e"};
+    final String[] backgroundStarColours = {"a37374", "7a8dab", "ffffff", "a45c3e"};
 
     public static final String FILE_PREFIX = "file:";
 
@@ -40,20 +42,20 @@ public class SolarSystem extends Application {
         final double initialCentreY = primaryStage.getHeight() / 2;
 
         final Star sun = new Sun(root, initialCentreX - 250);
-        ROTATING_MODELS.add(sun); SPACE_OBJECTS.add(sun);
+        this.addRotatingSpaceObject(sun);
 
         final Planet earth = new Earth(root, sun);
-        ROTATING_MODELS.add(earth); SPACE_OBJECTS.add(earth);
+        this.addRotatingSpaceObject(earth);
 
-        ROTATING_MODELS.forEach(rotatingModel -> {
-            rotatingModel.initModel();
-            rotatingModel.setupRotations(initialCentreX, initialCentreY);
-        });
+        final Moon luna = new Luna(root, earth);
+        this.addRotatingSpaceObject(luna);
+
+        this.initRotatingModels(initialCentreX, initialCentreY);
 
         this.createBackgroundStars(root);
 
         // Add Earth and Sun to root.
-        root.getChildren().addAll(earth.getPlanetContainer(), sun.getStarSphere());
+        root.getChildren().addAll(earth.getPlanetContainer(), sun.getStarSphere(), luna.getMoonContainer());
 
         root.getStylesheets().add("file:" + FileUtils.getFile("stylesheets/default.css").getPath());
 
@@ -66,6 +68,18 @@ public class SolarSystem extends Application {
         tick.play();
     }
 
+    private void addRotatingSpaceObject (final IRotatingSpaceObject rotatingSpaceObject) {
+        ROTATING_MODELS.add(rotatingSpaceObject);
+        SPACE_OBJECTS.add(rotatingSpaceObject);
+    }
+
+    private void initRotatingModels(double initialCentreX, double initialCentreY) {
+        ROTATING_MODELS.forEach(rotatingModel -> {
+            rotatingModel.initModel();
+            rotatingModel.initRotations(initialCentreX, initialCentreY);
+        });
+    }
+
     private void callTickMethods (final ActionEvent event) {
         SPACE_OBJECTS.forEach(spaceObject -> spaceObject.onTick(event));
     }
@@ -73,7 +87,7 @@ public class SolarSystem extends Application {
     private void createBackgroundStars(final StackPane root) {
         for (int i = 0; i < IntegerUtils.getRandomIntBetween(5000, 5500); i++) {
             final Circle star = new Circle(IntegerUtils.getRandomIntBetween(1, 50) == 1 ? 3 : IntegerUtils.getRandomIntBetween(1, 9) == 1 ? 2 : 1);
-            star.setFill(Paint.valueOf("#" + this.colours[IntegerUtils.getRandomIntBetween(0, this.colours.length - 1)]));
+            star.setFill(Paint.valueOf("#" + this.backgroundStarColours[IntegerUtils.getRandomIntBetween(0, this.backgroundStarColours.length - 1)]));
 
             star.setTranslateX(IntegerUtils.getRandomIntBetween(-1200, 1200));
             star.setTranslateY(IntegerUtils.getRandomIntBetween(-1200, 1200));

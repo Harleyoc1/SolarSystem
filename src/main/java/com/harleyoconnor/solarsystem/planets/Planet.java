@@ -1,7 +1,9 @@
 package com.harleyoconnor.solarsystem.planets;
 
 import com.harleyoconnor.solarsystem.IRotatingModel;
+import com.harleyoconnor.solarsystem.IRotatingSpaceObject;
 import com.harleyoconnor.solarsystem.ISpaceObject;
+import com.harleyoconnor.solarsystem.moons.Moon;
 import com.harleyoconnor.solarsystem.stars.Star;
 import com.harleyoconnor.solarsystem.utils.TransitionUtils;
 import javafx.animation.Animation;
@@ -14,14 +16,21 @@ import javafx.scene.paint.PhongMaterial;
 import javafx.scene.shape.Sphere;
 import javafx.scene.transform.Rotate;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * @author Harley O'Connor
  */
-public abstract class Planet implements ISpaceObject, IRotatingModel {
+public abstract class Planet implements IRotatingSpaceObject {
+
+    private List<Moon> moons = new ArrayList<>();
 
     private final int radius;
+    private final double positionX;
+    private final double positionY;
 
-    protected final StackPane planetContainer;
+    protected final StackPane planetContainer = new StackPane();
     protected final StackPane parentPane;
     protected final Star parentStar;
 
@@ -31,11 +40,12 @@ public abstract class Planet implements ISpaceObject, IRotatingModel {
 
     private double angle;
 
-    public Planet (final int radius, final StackPane parentPane, final Star parentStar) {
+    public Planet (final int radius, final StackPane parentPane, final Star parentStar, final double positionX, final double positionY) {
         this.radius = radius;
         this.parentPane = parentPane;
         this.parentStar = parentStar;
-        this.planetContainer = new StackPane();
+        this.positionX = positionX;
+        this.positionY = positionY;
     }
 
     @Override
@@ -52,7 +62,7 @@ public abstract class Planet implements ISpaceObject, IRotatingModel {
     }
 
     @Override
-    public void setupRotations (final double centreX, final double centreY) {
+    public void initRotations(final double centreX, final double centreY) {
         this.planetRotation = TransitionUtils.setupRotationTransition(this.planetSphere, 5000, Rotate.Y_AXIS, -360, Animation.INDEFINITE, Interpolator.LINEAR);
         this.planetRotation.play();
 
@@ -77,6 +87,18 @@ public abstract class Planet implements ISpaceObject, IRotatingModel {
 
     public StackPane getPlanetContainer() {
         return planetContainer;
+    }
+
+    public double getPositionX() {
+        return (this.parentPane.getWidth() / 2) - this.positionX;
+    }
+
+    public double getPositionY() {
+        return (this.parentPane.getHeight() / 2) - this.positionY;
+    }
+
+    public Rotate getRotationAroundStar() {
+        return rotationAroundStar;
     }
 
 }

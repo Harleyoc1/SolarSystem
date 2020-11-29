@@ -18,6 +18,6 @@ public interface IRotatingModel {
      * @param centreX The x centre of the screen.
      * @param centreY The y centre of the screen.
      */
-    void setupRotations(final double centreX, final double centreY);
+    void initRotations(final double centreX, final double centreY);
 
 }

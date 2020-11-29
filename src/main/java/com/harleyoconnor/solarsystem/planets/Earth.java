@@ -12,7 +12,7 @@ import javafx.scene.layout.StackPane;
 public final class Earth extends Planet {
 
     public Earth (final StackPane parentPane, final Star parentStar) {
-        super (25, parentPane, parentStar);
+        super (25, parentPane, parentStar, 100, 0);
     }
 
     @Override
@@ -23,8 +23,8 @@ public final class Earth extends Planet {
     }
 
     @Override
-    public void setupRotations(double centreX, double centreY) {
-        super.setupRotations(centreX - 250, centreY);
+    public void initRotations(double centreX, double centreY) {
+        super.initRotations(centreX - 250, centreY);
     }
 
     @Override

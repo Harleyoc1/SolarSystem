@@ -1,7 +1,6 @@
 package com.harleyoconnor.solarsystem.stars;
 
-import com.harleyoconnor.solarsystem.IRotatingModel;
-import com.harleyoconnor.solarsystem.ISpaceObject;
+import com.harleyoconnor.solarsystem.IRotatingSpaceObject;
 import com.harleyoconnor.solarsystem.utils.TransitionUtils;
 import javafx.animation.Animation;
 import javafx.animation.Interpolator;
@@ -16,7 +15,7 @@ import javafx.scene.transform.Rotate;
 /**
  * @author Harley O'Connor
  */
-public abstract class Star implements ISpaceObject, IRotatingModel {
+public abstract class Star implements IRotatingSpaceObject {
 
     private final int radius;
     private final double positionX;
@@ -44,14 +43,12 @@ public abstract class Star implements ISpaceObject, IRotatingModel {
 
         this.starSphere.setMaterial(planetMaterial);
 
-        System.out.println(this.positionX + " " + this.positionY);
-
         this.starSphere.translateXProperty().set(this.positionX);
         this.starSphere.translateYProperty().set(this.positionY);
     }
 
     @Override
-    public void setupRotations(final double centreX, final double centreY) {
+    public void initRotations(final double centreX, final double centreY) {
         this.starRotation = TransitionUtils.setupRotationTransition(this.starSphere, 5000, Rotate.Y_AXIS, -360, Animation.INDEFINITE, Interpolator.LINEAR);
         this.starRotation.play();
     }
