@@ -1,6 +1,6 @@
 package com.harleyoconnor.solarsystem.moons;
 
-import com.harleyoconnor.solarsystem.IRotatingSpaceObject;
+import com.harleyoconnor.solarsystem.IRotatingObject;
 import com.harleyoconnor.solarsystem.planets.Planet;
 import com.harleyoconnor.solarsystem.utils.TransitionUtils;
 import javafx.animation.Animation;
@@ -16,7 +16,7 @@ import javafx.scene.transform.Rotate;
 /**
  * @author Harley O'Connor
  */
-public abstract class Moon implements IRotatingSpaceObject {
+public abstract class Moon implements IRotatingObject {
 
     private final int radius;
 

@@ -27,8 +27,7 @@ public class SolarSystem extends Application {
 
     public static final String FILE_PREFIX = "file:";
 
-    private static final List<ISpaceObject> SPACE_OBJECTS = new ArrayList<>();
-    private static final List<IRotatingModel> ROTATING_MODELS = new ArrayList<>();
+    private static final List<IRotatingObject> ROTATING_OBJECTS = new ArrayList<>();
 
     @Override
     public void start (Stage primaryStage) {
@@ -68,20 +67,19 @@ public class SolarSystem extends Application {
         tick.play();
     }
 
-    private void addRotatingSpaceObject (final IRotatingSpaceObject rotatingSpaceObject) {
-        ROTATING_MODELS.add(rotatingSpaceObject);
-        SPACE_OBJECTS.add(rotatingSpaceObject);
+    private void addRotatingSpaceObject (final IRotatingObject rotatingObject) {
+        ROTATING_OBJECTS.add(rotatingObject);
     }
 
     private void initRotatingModels(double initialCentreX, double initialCentreY) {
-        ROTATING_MODELS.forEach(rotatingModel -> {
+        ROTATING_OBJECTS.forEach(rotatingModel -> {
             rotatingModel.initModel();
             rotatingModel.initRotations(initialCentreX, initialCentreY);
         });
     }
 
     private void callTickMethods (final ActionEvent event) {
-        SPACE_OBJECTS.forEach(spaceObject -> spaceObject.onTick(event));
+        ROTATING_OBJECTS.forEach(spaceObject -> spaceObject.onTick(event));
     }
 
     private void createBackgroundStars(final StackPane root) {

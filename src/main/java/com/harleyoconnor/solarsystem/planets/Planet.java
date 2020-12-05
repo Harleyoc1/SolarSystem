@@ -1,8 +1,6 @@
 package com.harleyoconnor.solarsystem.planets;
 
-import com.harleyoconnor.solarsystem.IRotatingModel;
-import com.harleyoconnor.solarsystem.IRotatingSpaceObject;
-import com.harleyoconnor.solarsystem.ISpaceObject;
+import com.harleyoconnor.solarsystem.IRotatingObject;
 import com.harleyoconnor.solarsystem.moons.Moon;
 import com.harleyoconnor.solarsystem.stars.Star;
 import com.harleyoconnor.solarsystem.utils.TransitionUtils;
@@ -22,7 +20,7 @@ import java.util.List;
 /**
  * @author Harley O'Connor
  */
-public abstract class Planet implements IRotatingSpaceObject {
+public abstract class Planet implements IRotatingObject {
 
     private List<Moon> moons = new ArrayList<>();
 

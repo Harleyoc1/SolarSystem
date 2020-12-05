@@ -1,6 +1,6 @@
 package com.harleyoconnor.solarsystem.stars;
 
-import com.harleyoconnor.solarsystem.IRotatingSpaceObject;
+import com.harleyoconnor.solarsystem.IRotatingObject;
 import com.harleyoconnor.solarsystem.utils.TransitionUtils;
 import javafx.animation.Animation;
 import javafx.animation.Interpolator;
@@ -15,7 +15,7 @@ import javafx.scene.transform.Rotate;
 /**
  * @author Harley O'Connor
  */
-public abstract class Star implements IRotatingSpaceObject {
+public abstract class Star implements IRotatingObject {
 
     private final int radius;
     private final double positionX;
