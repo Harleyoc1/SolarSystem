@@ -7,6 +7,7 @@ import javafx.animation.Animation;
 import javafx.animation.Interpolator;
 import javafx.animation.RotateTransition;
 import javafx.event.ActionEvent;
+import javafx.geometry.Bounds;
 import javafx.scene.image.Image;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.PhongMaterial;
@@ -54,13 +55,8 @@ public abstract class Moon implements IRotatingObject {
         this.moonRotation = TransitionUtils.setupRotationTransition(this.moonSphere, 5000, Rotate.Y_AXIS, -360, Animation.INDEFINITE, Interpolator.LINEAR);
         this.moonRotation.play();
 
-        this.rotationAroundPlanet = new Rotate(0, centreX + 100, centreY); // Replace with call to star position.
-        this.moonContainer.getTransforms().add(this.rotationAroundPlanet);
-
-        this.parentPlanet.getPlanetContainer().boundsInParentProperty().addListener(((observable, oldValue, newValue) -> {
-            this.rotationAroundPlanet.setPivotX(newValue.getCenterX());
-            this.rotationAroundPlanet.setPivotY(newValue.getCenterY());
-        }));
+        this.rotationAroundPlanet = new Rotate(0, centreX + 100, centreY); // Replace with call to planet position.
+        this.moonContainer.getTransforms().addAll(this.parentPlanet.getRotationAroundStar(), this.rotationAroundPlanet);
 
         // When screen is resized, change pivot coordinates of earth rotation.
         this.parentPane.widthProperty().addListener((observable, oldValue, newValue) ->
@@ -72,7 +68,7 @@ public abstract class Moon implements IRotatingObject {
     @Override
     public void onTick (final ActionEvent event) {
         this.rotationAroundPlanet.setAngle(this.angle);
-        this.angle += 0.25;
+        this.angle += 0.5;
         if (this.angle > 360) this.angle = 0;
     }
 
