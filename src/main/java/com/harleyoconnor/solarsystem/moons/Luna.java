@@ -14,7 +14,14 @@ public final class Luna extends Moon {
     public Luna (StackPane parentPane, Planet parentPlanet) {
         super(10, parentPane, parentPlanet);
     }
-    
+
+    @Override
+    public void initModel() {
+        super.initModel();
+
+        this.moonSphere.setTranslateX(35);
+    }
+
     @Override
     public Image getTexture() {
         return new Image(SolarSystem.FILE_PREFIX + FileUtils.getInternalPath("textures/planets/earth.jpg"));

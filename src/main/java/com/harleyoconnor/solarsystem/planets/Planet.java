@@ -87,11 +87,19 @@ public abstract class Planet implements IRotatingObject {
         return planetContainer;
     }
 
-    public double getPositionX() {
+    public double getPositionX () {
+        return this.planetSphere.getBoundsInParent().getCenterX();
+    }
+
+    public double getPositionY () {
+        return this.planetContainer.getBoundsInParent().getCenterY();
+    }
+
+    public double getInitialPositionX() {
         return (this.parentPane.getWidth() / 2) - this.positionX;
     }
 
-    public double getPositionY() {
+    public double getInitialPositionY() {
         return (this.parentPane.getHeight() / 2) - this.positionY;
     }
 

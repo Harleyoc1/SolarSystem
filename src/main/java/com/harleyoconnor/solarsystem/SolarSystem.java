@@ -27,6 +27,7 @@ public class SolarSystem extends Application {
 
     public static final String FILE_PREFIX = "file:";
 
+    private Asteroid asteroid;
     private static final List<IRotatingObject> ROTATING_OBJECTS = new ArrayList<>();
 
     @Override
@@ -61,6 +62,9 @@ public class SolarSystem extends Application {
         primaryStage.setScene(scene);
         primaryStage.show();
 
+        this.asteroid = new Asteroid(scene);
+        root.getChildren().add(this.asteroid.getAsteroid());
+
         final Timeline tick = new Timeline(60, new KeyFrame(new Duration(10), this::callTickMethods));
 
         tick.setCycleCount(-1);
@@ -80,6 +84,7 @@ public class SolarSystem extends Application {
 
     private void callTickMethods (final ActionEvent event) {
         ROTATING_OBJECTS.forEach(spaceObject -> spaceObject.onTick(event));
+        this.asteroid.tick();
     }
 
     private void createBackgroundStars(final StackPane root) {
