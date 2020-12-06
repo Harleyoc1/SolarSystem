@@ -1,9 +1,9 @@
 package com.harleyoconnor.solarsystem;
 
+import javafx.event.ActionEvent;
 import javafx.scene.Scene;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Circle;
-import javafx.scene.shape.Rectangle;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,7 +11,7 @@ import java.util.List;
 /**
  * @author Harley O'Connor
  */
-public final class Asteroid {
+public final class Asteroid implements ITickable {
 
     public enum Direction {
         NORTH(true, -1), SOUTH(true, 1), EAST(false, -1), WEST(false, 1);
@@ -65,7 +65,8 @@ public final class Asteroid {
         });
     }
 
-    public void tick () {
+    @Override
+    public void onTick (final ActionEvent event) {
         final double boundY = this.scene.getHeight() / 2 - 8;
         final double boundX = this.scene.getWidth() / 2 - 8;
 

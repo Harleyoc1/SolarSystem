@@ -28,7 +28,8 @@ public class SolarSystem extends Application {
     public static final String FILE_PREFIX = "file:";
 
     private Asteroid asteroid;
-    private static final List<IRotatingObject> ROTATING_OBJECTS = new ArrayList<>();
+    private final List<IRotatingObject> rotatingObjects = new ArrayList<>();
+    private final List<ITickable> tickableObjects = new ArrayList<>();
 
     @Override
     public void start (Stage primaryStage) {
@@ -65,6 +66,9 @@ public class SolarSystem extends Application {
         this.asteroid = new Asteroid(scene);
         root.getChildren().add(this.asteroid.getAsteroid());
 
+        this.tickableObjects.addAll(this.rotatingObjects);
+        this.tickableObjects.add(this.asteroid);
+
         final Timeline tick = new Timeline(60, new KeyFrame(new Duration(10), this::callTickMethods));
 
         tick.setCycleCount(-1);
@@ -72,19 +76,18 @@ public class SolarSystem extends Application {
     }
 
     private void addRotatingSpaceObject (final IRotatingObject rotatingObject) {
-        ROTATING_OBJECTS.add(rotatingObject);
+        this.rotatingObjects.add(rotatingObject);
     }
 
     private void initRotatingModels(double initialCentreX, double initialCentreY) {
-        ROTATING_OBJECTS.forEach(rotatingModel -> {
+        this.rotatingObjects.forEach(rotatingModel -> {
             rotatingModel.initModel();
             rotatingModel.initRotations(initialCentreX, initialCentreY);
         });
     }
 
     private void callTickMethods (final ActionEvent event) {
-        ROTATING_OBJECTS.forEach(spaceObject -> spaceObject.onTick(event));
-        this.asteroid.tick();
+        this.tickableObjects.forEach(spaceObject -> spaceObject.onTick(event));
     }
 
     private void createBackgroundStars(final StackPane root) {

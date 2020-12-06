@@ -1,13 +1,11 @@
 package com.harleyoconnor.solarsystem;
 
-import javafx.event.ActionEvent;
-
 /**
  * Common abstract methods for Rotating models.
  *
  * @author Harley O'Connor
  */
-public interface IRotatingObject {
+public interface IRotatingObject extends ITickable {
 
     /**
      * Implement this method to initialise models.
@@ -21,12 +19,5 @@ public interface IRotatingObject {
      * @param centreY The initial y centre of the screen.
      */
     void initRotations(final double centreX, final double centreY);
-
-    /**
-     * Called for every tick. In this case a tick is every 10ms.
-     *
-     * @param event The action event.
-     */
-    void onTick (final ActionEvent event);
 
 }
