@@ -1,3 +1,11 @@
 .root {
     -fx-background-color: black;
 }
+
+.score-font {
+    -fx-text-fill: white;
+    -fx-font-size: 20;
+    -fx-font-family: Arial;
+    -fx-background-color: black;
+    -fx-padding: 10 10 0 0;
+}

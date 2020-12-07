@@ -2,7 +2,7 @@ package com.harleyoconnor.solarsystem.moons;
 
 import com.harleyoconnor.solarsystem.IRotatingObject;
 import com.harleyoconnor.solarsystem.planets.Planet;
-import com.harleyoconnor.solarsystem.utils.TransitionUtils;
+import com.harleyoconnor.solarsystem.util.TransitionUtils;
 import javafx.animation.Animation;
 import javafx.animation.Interpolator;
 import javafx.animation.RotateTransition;

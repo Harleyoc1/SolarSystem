@@ -8,16 +8,23 @@ import com.harleyoconnor.solarsystem.planets.Earth;
 import com.harleyoconnor.solarsystem.planets.Planet;
 import com.harleyoconnor.solarsystem.stars.Star;
 import com.harleyoconnor.solarsystem.stars.Sun;
-import javafx.animation.*;
+import com.harleyoconnor.solarsystem.util.InterfaceUtils;
+import com.harleyoconnor.solarsystem.util.StyleUtils;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
+import java.net.MalformedURLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,14 +32,19 @@ public class SolarSystem extends Application {
 
     final String[] backgroundStarColours = {"a37374", "7a8dab", "ffffff", "a45c3e"};
 
+    public static SolarSystem INSTANCE; // Effectively final - set in start method below.
     public static final String FILE_PREFIX = "file:";
 
     private Asteroid asteroid;
+
+    private final Label scoreLabel = StyleUtils.addStyleClassTo(InterfaceUtils.createLabel("0"), "score-font");
     private final List<IRotatingObject> rotatingObjects = new ArrayList<>();
     private final List<ITickable> tickableObjects = new ArrayList<>();
 
     @Override
-    public void start (Stage primaryStage) {
+    public void start (Stage primaryStage) throws MalformedURLException {
+        INSTANCE = this;
+
         final StackPane root = new StackPane();
 
         final Scene scene = new Scene(root, 1500, 900);
@@ -58,13 +70,17 @@ public class SolarSystem extends Application {
         // Add Earth and Sun to root.
         root.getChildren().addAll(earth.getPlanetContainer(), sun.getStarSphere(), luna.getMoonContainer());
 
-        root.getStylesheets().add("file:" + FileUtils.getFile("stylesheets/default.css").getPath());
+        root.getStylesheets().add(FileUtils.getFile("stylesheets/default.css").toURI().toURL().toExternalForm());
 
-        primaryStage.setScene(scene);
-        primaryStage.show();
-
-        this.asteroid = new Asteroid(scene);
-        root.getChildren().add(this.asteroid.getAsteroid());
+        this.asteroid = new Asteroid(scene, earth);
+        root.getChildren().addAll(this.asteroid.getAsteroid(),
+                InterfaceUtils.addElementsToPane(new VBox(),
+                        InterfaceUtils.addElementsToPane(new HBox(),
+                                InterfaceUtils.createSpacer(true),
+                                StyleUtils.addStyleClassTo(InterfaceUtils.createLabel("Score: "), "score-font"),
+                                this.scoreLabel),
+                        InterfaceUtils.createSpacer(false)
+                ));
 
         this.tickableObjects.addAll(this.rotatingObjects);
         this.tickableObjects.add(this.asteroid);
@@ -73,6 +89,9 @@ public class SolarSystem extends Application {
 
         tick.setCycleCount(-1);
         tick.play();
+
+        primaryStage.setScene(scene);
+        primaryStage.show();
     }
 
     private void addRotatingSpaceObject (final IRotatingObject rotatingObject) {
@@ -105,5 +124,13 @@ public class SolarSystem extends Application {
     public static void main(String[] args) {
         launch(args);
     }
-    
+
+    public void addToScoreLabel (final int amountToAdd) {
+        this.scoreLabel.setText(Integer.toString(Integer.parseInt(this.scoreLabel.getText()) + amountToAdd));
+    }
+
+    public void takeFromScoreLabel (final int amountToTake) {
+        this.scoreLabel.setText(Integer.toString(Integer.parseInt(this.scoreLabel.getText()) - amountToTake));
+    }
+
 }

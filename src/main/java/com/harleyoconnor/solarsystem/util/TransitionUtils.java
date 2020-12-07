@@ -1,4 +1,4 @@
-package com.harleyoconnor.solarsystem.utils;
+package com.harleyoconnor.solarsystem.util;
 
 import javafx.animation.Interpolator;
 import javafx.animation.RotateTransition;

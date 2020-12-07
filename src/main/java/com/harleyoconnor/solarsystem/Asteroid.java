@@ -1,5 +1,6 @@
 package com.harleyoconnor.solarsystem;
 
+import com.harleyoconnor.solarsystem.planets.Planet;
 import javafx.event.ActionEvent;
 import javafx.scene.Scene;
 import javafx.scene.paint.Paint;
@@ -34,12 +35,16 @@ public final class Asteroid implements ITickable {
 
     }
 
+    private int score = 0;
+
+    private final Planet targetPlanet;
     private final Circle asteroid;
     private final Scene scene;
     private final List<Direction> currentlyMovingIn = new ArrayList<>();
 
-    public Asteroid (final Scene scene) {
+    public Asteroid (final Scene scene, final Planet targetPlanet) {
         this.scene = scene;
+        this.targetPlanet = targetPlanet;
         this.asteroid = new Circle(5, 5, 10, Paint.valueOf("#ddc618"));
 
         this.setupMovement();
@@ -85,6 +90,13 @@ public final class Asteroid implements ITickable {
 
         this.asteroid.setTranslateX(newX);
         this.asteroid.setTranslateY(newY);
+
+        if (this.asteroid.getBoundsInParent().intersects(this.targetPlanet.getPlanetContainer().getBoundsInParent())) this.incrementScore();
+    }
+
+    private void incrementScore() {
+        SolarSystem.INSTANCE.addToScoreLabel(1);
+        this.score++;
     }
 
     public Circle getAsteroid() {
