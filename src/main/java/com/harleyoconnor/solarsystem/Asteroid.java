@@ -3,6 +3,7 @@ package com.harleyoconnor.solarsystem;
 import com.harleyoconnor.solarsystem.planets.Planet;
 import javafx.event.ActionEvent;
 import javafx.scene.Scene;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Circle;
 
@@ -51,23 +52,22 @@ public final class Asteroid implements ITickable {
     }
 
     private void setupMovement () {
-        this.scene.setOnKeyPressed(event -> {
-            switch (event.getCode()) {
-                case W: if (!this.currentlyMovingIn.contains(Direction.NORTH)) this.currentlyMovingIn.add(Direction.NORTH); break;
-                case A: if (!this.currentlyMovingIn.contains(Direction.EAST)) this.currentlyMovingIn.add(Direction.EAST); break;
-                case S: if (!this.currentlyMovingIn.contains(Direction.SOUTH)) this.currentlyMovingIn.add(Direction.SOUTH); break;
-                case D: if (!this.currentlyMovingIn.contains(Direction.WEST)) this.currentlyMovingIn.add(Direction.WEST); break;
-            }
-        });
+        this.scene.setOnKeyPressed(event -> this.keyPressedOrReleased(event, true));
+        this.scene.setOnKeyReleased(event -> this.keyPressedOrReleased(event, false));
+    }
 
-        this.scene.setOnKeyReleased(event -> {
-            switch (event.getCode()) {
-                case W -> this.currentlyMovingIn.remove(Direction.NORTH);
-                case A -> this.currentlyMovingIn.remove(Direction.EAST);
-                case S -> this.currentlyMovingIn.remove(Direction.SOUTH);
-                case D -> this.currentlyMovingIn.remove(Direction.WEST);
-            }
-        });
+    private void keyPressedOrReleased (final KeyEvent event, final boolean pressed) {
+        switch (event.getCode()) {
+            case W -> removeOrAddDir(Direction.NORTH, pressed);
+            case A -> removeOrAddDir(Direction.EAST, pressed);
+            case S -> removeOrAddDir(Direction.SOUTH, pressed);
+            case D -> removeOrAddDir(Direction.WEST, pressed);
+        }
+    }
+
+    private void removeOrAddDir (final Direction dir, final boolean pressed) {
+        if (pressed && !this.currentlyMovingIn.contains(dir)) this.currentlyMovingIn.add(dir);
+        else if (!pressed) this.currentlyMovingIn.remove(dir);
     }
 
     @Override
@@ -79,8 +79,8 @@ public final class Asteroid implements ITickable {
         double newY = this.asteroid.getTranslateY();
 
         for (final Direction dir : this.currentlyMovingIn) {
-            newX += (!dir.isVertical() ? 5 * dir.getMovement() : 0);
-            newY += (dir.isVertical() ? 5 * dir.getMovement() : 0);
+            newX += (!dir.isVertical() ? 3 * dir.getMovement() : 0);
+            newY += (dir.isVertical() ? 3 * dir.getMovement() : 0);
         }
 
         if (boundX < newX) newX = boundX;

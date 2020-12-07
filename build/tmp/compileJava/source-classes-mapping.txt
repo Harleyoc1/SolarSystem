@@ -14,15 +14,15 @@ com/harleyoconnor/solarsystem/ITickable.java
  com.harleyoconnor.solarsystem.ITickable
 com/harleyoconnor/solarsystem/planets/Earth.java
  com.harleyoconnor.solarsystem.planets.Earth
-com/harleyoconnor/solarsystem/Asteroid.java
- com.harleyoconnor.solarsystem.Asteroid
- com.harleyoconnor.solarsystem.Asteroid$1
- com.harleyoconnor.solarsystem.Asteroid$Direction
+com/harleyoconnor/solarsystem/moons/Luna.java
+ com.harleyoconnor.solarsystem.moons.Luna
 com/harleyoconnor/solarsystem/moons/Moon.java
  com.harleyoconnor.solarsystem.moons.Moon
 com/harleyoconnor/solarsystem/planets/Planet.java
  com.harleyoconnor.solarsystem.planets.Planet
-com/harleyoconnor/solarsystem/moons/Luna.java
- com.harleyoconnor.solarsystem.moons.Luna
+com/harleyoconnor/solarsystem/Asteroid.java
+ com.harleyoconnor.solarsystem.Asteroid
+ com.harleyoconnor.solarsystem.Asteroid$1
+ com.harleyoconnor.solarsystem.Asteroid$Direction
 com/harleyoconnor/solarsystem/SolarSystem.java
  com.harleyoconnor.solarsystem.SolarSystem
