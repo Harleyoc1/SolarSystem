@@ -1,6 +1,7 @@
-package com.harleyoconnor.solarsystem.planets;
+package com.harleyoconnor.solarsystem.movable.planets;
 
 import com.harleyoconnor.javautilities.FileUtils;
+import com.harleyoconnor.solarsystem.Constants;
 import com.harleyoconnor.solarsystem.SolarSystem;
 import com.harleyoconnor.solarsystem.stars.Star;
 import javafx.scene.image.Image;
@@ -29,7 +30,7 @@ public final class Earth extends Planet {
 
     @Override
     public Image getTexture() {
-        return new Image(SolarSystem.FILE_PREFIX + FileUtils.getInternalPath("textures/planets/earth.jpg"));
+        return new Image(Constants.FILE_PREFIX + FileUtils.getInternalPath(Constants.PLANETS_PATH + "earth.jpg"));
     }
 
 }

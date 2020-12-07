@@ -1,6 +1,7 @@
 package com.harleyoconnor.solarsystem.stars;
 
 import com.harleyoconnor.javautilities.FileUtils;
+import com.harleyoconnor.solarsystem.Constants;
 import com.harleyoconnor.solarsystem.SolarSystem;
 import javafx.scene.image.Image;
 import javafx.scene.layout.StackPane;
@@ -22,7 +23,7 @@ public final class Sun extends Star {
 
     @Override
     public Image getTexture() {
-        return new Image(SolarSystem.FILE_PREFIX + FileUtils.getInternalPath("textures/stars/sun.jpg"));
+        return new Image(Constants.FILE_PREFIX + FileUtils.getInternalPath(Constants.STARS_PATH + "sun.jpg"));
     }
 
 }

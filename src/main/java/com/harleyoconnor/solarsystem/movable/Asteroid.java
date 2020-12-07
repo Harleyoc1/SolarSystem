@@ -1,6 +1,8 @@
-package com.harleyoconnor.solarsystem;
+package com.harleyoconnor.solarsystem.movable;
 
-import com.harleyoconnor.solarsystem.planets.Planet;
+import com.harleyoconnor.solarsystem.ITickable;
+import com.harleyoconnor.solarsystem.SolarSystem;
+import com.harleyoconnor.solarsystem.movable.planets.Planet;
 import javafx.event.ActionEvent;
 import javafx.scene.Scene;
 import javafx.scene.input.KeyEvent;

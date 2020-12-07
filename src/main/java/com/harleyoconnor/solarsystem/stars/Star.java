@@ -1,6 +1,6 @@
 package com.harleyoconnor.solarsystem.stars;
 
-import com.harleyoconnor.solarsystem.IRotatingObject;
+import com.harleyoconnor.solarsystem.movable.IRotatingObject;
 import com.harleyoconnor.solarsystem.util.TransitionUtils;
 import javafx.animation.Animation;
 import javafx.animation.Interpolator;

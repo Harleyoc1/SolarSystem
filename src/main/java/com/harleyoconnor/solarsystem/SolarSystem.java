@@ -2,10 +2,12 @@ package com.harleyoconnor.solarsystem;
 
 import com.harleyoconnor.javautilities.FileUtils;
 import com.harleyoconnor.javautilities.IntegerUtils;
-import com.harleyoconnor.solarsystem.moons.Luna;
-import com.harleyoconnor.solarsystem.moons.Moon;
-import com.harleyoconnor.solarsystem.planets.Earth;
-import com.harleyoconnor.solarsystem.planets.Planet;
+import com.harleyoconnor.solarsystem.movable.Asteroid;
+import com.harleyoconnor.solarsystem.movable.IRotatingObject;
+import com.harleyoconnor.solarsystem.movable.moons.Luna;
+import com.harleyoconnor.solarsystem.movable.moons.Moon;
+import com.harleyoconnor.solarsystem.movable.planets.Earth;
+import com.harleyoconnor.solarsystem.movable.planets.Planet;
 import com.harleyoconnor.solarsystem.stars.Star;
 import com.harleyoconnor.solarsystem.stars.Sun;
 import com.harleyoconnor.solarsystem.util.InterfaceUtils;
@@ -33,7 +35,6 @@ public class SolarSystem extends Application {
     final String[] backgroundStarColours = {"a37374", "7a8dab", "ffffff", "a45c3e"};
 
     public static SolarSystem INSTANCE; // Effectively final - set in start method below.
-    public static final String FILE_PREFIX = "file:";
 
     private Asteroid asteroid;
 
@@ -70,7 +71,7 @@ public class SolarSystem extends Application {
         // Add Earth and Sun to root.
         root.getChildren().addAll(earth.getPlanetContainer(), sun.getStarSphere(), luna.getMoonContainer());
 
-        root.getStylesheets().add(FileUtils.getFile("stylesheets/default.css").toURI().toURL().toExternalForm());
+        root.getStylesheets().add(FileUtils.getFile(Constants.STYLESHEETS_PATH + "default.css").toURI().toURL().toExternalForm());
 
         this.asteroid = new Asteroid(scene, earth);
         root.getChildren().addAll(this.asteroid.getAsteroid(),
@@ -91,6 +92,7 @@ public class SolarSystem extends Application {
         tick.play();
 
         primaryStage.setScene(scene);
+        primaryStage.setTitle(Constants.APP_NAME + " " + Constants.APP_VERSION);
         primaryStage.show();
     }
 

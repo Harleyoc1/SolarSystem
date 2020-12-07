@@ -1,7 +1,7 @@
-package com.harleyoconnor.solarsystem.planets;
+package com.harleyoconnor.solarsystem.movable.planets;
 
-import com.harleyoconnor.solarsystem.IRotatingObject;
-import com.harleyoconnor.solarsystem.moons.Moon;
+import com.harleyoconnor.solarsystem.movable.IRotatingObject;
+import com.harleyoconnor.solarsystem.movable.moons.Moon;
 import com.harleyoconnor.solarsystem.stars.Star;
 import com.harleyoconnor.solarsystem.util.TransitionUtils;
 import javafx.animation.Animation;

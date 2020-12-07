@@ -1,4 +1,6 @@
-package com.harleyoconnor.solarsystem;
+package com.harleyoconnor.solarsystem.movable;
+
+import com.harleyoconnor.solarsystem.ITickable;
 
 /**
  * Common abstract methods for Rotating models.

@@ -1,28 +1,30 @@
-com/harleyoconnor/solarsystem/util/TransitionUtils.java
- com.harleyoconnor.solarsystem.util.TransitionUtils
+com/harleyoconnor/solarsystem/movable/planets/Planet.java
+ com.harleyoconnor.solarsystem.movable.planets.Planet
+com/harleyoconnor/solarsystem/movable/moons/Luna.java
+ com.harleyoconnor.solarsystem.movable.moons.Luna
 com/harleyoconnor/solarsystem/stars/Sun.java
  com.harleyoconnor.solarsystem.stars.Sun
 com/harleyoconnor/solarsystem/stars/Star.java
  com.harleyoconnor.solarsystem.stars.Star
+com/harleyoconnor/solarsystem/Constants.java
+ com.harleyoconnor.solarsystem.Constants
 com/harleyoconnor/solarsystem/util/StyleUtils.java
  com.harleyoconnor.solarsystem.util.StyleUtils
 com/harleyoconnor/solarsystem/util/InterfaceUtils.java
  com.harleyoconnor.solarsystem.util.InterfaceUtils
-com/harleyoconnor/solarsystem/IRotatingObject.java
- com.harleyoconnor.solarsystem.IRotatingObject
+com/harleyoconnor/solarsystem/movable/moons/Moon.java
+ com.harleyoconnor.solarsystem.movable.moons.Moon
+com/harleyoconnor/solarsystem/movable/planets/Earth.java
+ com.harleyoconnor.solarsystem.movable.planets.Earth
 com/harleyoconnor/solarsystem/ITickable.java
  com.harleyoconnor.solarsystem.ITickable
-com/harleyoconnor/solarsystem/planets/Earth.java
- com.harleyoconnor.solarsystem.planets.Earth
-com/harleyoconnor/solarsystem/moons/Luna.java
- com.harleyoconnor.solarsystem.moons.Luna
-com/harleyoconnor/solarsystem/moons/Moon.java
- com.harleyoconnor.solarsystem.moons.Moon
-com/harleyoconnor/solarsystem/planets/Planet.java
- com.harleyoconnor.solarsystem.planets.Planet
-com/harleyoconnor/solarsystem/Asteroid.java
- com.harleyoconnor.solarsystem.Asteroid
- com.harleyoconnor.solarsystem.Asteroid$1
- com.harleyoconnor.solarsystem.Asteroid$Direction
+com/harleyoconnor/solarsystem/movable/Asteroid.java
+ com.harleyoconnor.solarsystem.movable.Asteroid
+ com.harleyoconnor.solarsystem.movable.Asteroid$1
+ com.harleyoconnor.solarsystem.movable.Asteroid$Direction
+com/harleyoconnor/solarsystem/util/TransitionUtils.java
+ com.harleyoconnor.solarsystem.util.TransitionUtils
+com/harleyoconnor/solarsystem/movable/IRotatingObject.java
+ com.harleyoconnor.solarsystem.movable.IRotatingObject
 com/harleyoconnor/solarsystem/SolarSystem.java
  com.harleyoconnor.solarsystem.SolarSystem
